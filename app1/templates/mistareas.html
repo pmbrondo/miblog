@@ -1,6 +1,10 @@
 {% extends 'herencia.html' %}
 {% block dinamico %}
 <h1>
-    Debo crear tareas
+    
+    {% for i in pendientes %}
+     {{i.asociado}} Tareas: {{i.titulo}}<br>
+
+    {% endfor %}
 </h1>
 {% endblock %}

@@ -1,6 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Tareas,Proyectos
 from .forms import TareaNueva,Proyectonuevo
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login,logout,authenticate
 
 # Create your views here.
 
@@ -67,3 +69,34 @@ def detalle_proyecto(requets,id):
     p=Proyectos.objects.get(id=id)
     a=tarea=Tareas.objects.filter(asociado=id)
     return render (requets,'detalle.html',{'proyecto':p,'listado':a})
+
+#Usuarios, login y accesos.
+
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render, redirect
+
+def vista_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                print(f"Bienvenido, {username}")
+                return render(request, "inicio.html", {"mensaje":{username}})
+            else:
+                print("Error, datos mal ingresados")
+                return render(request, "inicio.html", {"mensaje": "Error, datos mal ingresados"})
+        else:
+            print("Error, formulario incorrecto")
+            return render(request, "inicio.html", {"mensaje": "Error, formulario incorrecto"})
+    
+    form = AuthenticationForm()
+    return render(request, "login.html", {"formulario": form})
+

@@ -9,3 +9,15 @@ class TareaNueva(forms.Form):
 class Proyectonuevo(forms.Form):
     nombre=forms.CharField()
     fecha=forms.TimeField()
+
+
+
+
+#Creacion y edicion de usuarios
+
+    
+
+class Editarusuario(forms.Form):
+    mail=forms.EmailField(label='Cambiar mail')
+    clave1=forms.CharField(label='Nueva clave',widget=forms.PasswordInput)
+    clave2=forms.CharField(label='Repetir clave',widget=forms.PasswordInput)

@@ -18,7 +18,11 @@
     <title>Botón de Login</title>
 <body>
     <header>
-        <a href="#" id="login-btn">Iniciar sesión</a>
+        <table>
+            <a href= "{% url 'login' %}" id="login-btn">Iniciar sesión</a><br>
+            <a href= "{% url 'cerrarseccion' %}">Cerrar sesión</a>
+        </table>
+        
     </header>
 
     <!-- Resto del contenido de la página -->
@@ -26,12 +30,15 @@
 </body>
 
    <!-- prueba -->
-
+ 
 
 <body>
     <h1>
         Bienvenido
     </h1>
+    {% for i in mensaje %}
+    <h1>{{i}}</h1>
+    {% endfor %}
     <p>Web para equipo de desarrollo junior</p>
 
     <h2>
@@ -66,7 +73,8 @@
 
         <img src="{% static 'descarga3.png' %}" alt="">
    
-       
+       <h4>Ante cualquier dificultad o consulta, no dudes en ponerte en contacto!!</h4>
+
     <footer class="footer bg-light">
         <div class="container">
             <div class="row">

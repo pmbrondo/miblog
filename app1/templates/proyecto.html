@@ -1,21 +1,18 @@
 {% extends 'herencia.html' %}
 {% block dinamico %}
 
-<h1>
-    Pendientes de mi equipo!!
-</h1>
-<p>listados de proyectos pendientes</p>
+<h1>Pendientes de mi equipo!!</h1>
 
-{% for i in milista %}
 
-<h1>{{i}}</h1>
-<button>
-    Ver tareas
-</button>
 
-<button>
-    Asignarme
-</button>
+
+
+{% for i in milista2 %}
+
+<table>
+    <li><a href="{% url 'proyecto_tarea' i.id %}" >{{i.id}} {{i.nombre}} </a></li>
+</table>
+
 {% endfor %}
 
 

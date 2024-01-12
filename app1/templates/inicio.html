@@ -1,5 +1,6 @@
 
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
 <!DOCTYPE html>
 <html lang="en">
@@ -40,13 +41,21 @@
         ¿Qué objetivo tiene el trabajo en equipo?
          El trabajo en equipo facilita el cumplimiento de objetivos, incrementa la motivación y la creatividad, y favorece las habilidades sociales de cada uno. El trabajo en equipo es una capacidad altamente valorada en el mercado laboral, y es una de las características más demandadas por las empresas.
     </p>
+
+    <img src="{% static 'descarga.png' %}" alt="">
+
+
+
     <h2>
         ¿Qué necesita un equipo para cumplir sus objetivos?
     </h2>
 
-        ¿Qué necesita un equipo para cumplir sus objetivos?
-         
-          Para que un equipo sea eficaz, es necesario que cumpla con las siguientes características: Tener objetivos de equipo: deben existir metas e intereses en común que sean cuantificables y claros, de modo que todos sus componentes conozcan y comprendan sus propósitos y sus metas.
+                 
+        <p>Para que un equipo sea eficaz, es necesario que cumpla con las siguientes características: Tener objetivos de equipo: deben existir metas e intereses en común que sean cuantificables y claros, de modo que todos sus componentes conozcan y comprendan sus propósitos y sus metas.
+        </p>
+    
+
+          <img src="{% static 'descarga2.jpg' %}" alt="">
 
 
         <h3> ¿Como vamos a trabajar? </h3>
@@ -54,6 +63,8 @@
              Cada uno tendra acceso a ver los proyectos que tenemos pendientes o en proceso de desarrollo, cada uno podra asignarse del listado, para poder realizarlo debera estar registrado y completar sus datos en la ficha de ingreso. Una vez generado y asignado el proyecto, podra en caso de ser necesitario crear una nueva tarea en caso que no figure dentro de los pasos a seguir en cada proyecto. 
              Desde ya no hace falta aclarar que ante cualquier duda o consulta pueden verlo con el administrador.
         </p>
+
+        <img src="{% static 'descarga3.png' %}" alt="">
    
        
     <footer class="footer bg-light">

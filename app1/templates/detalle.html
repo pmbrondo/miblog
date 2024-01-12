@@ -1,0 +1,16 @@
+
+{% extends 'herencia.html' %}
+{% block dinamico %}
+
+
+<h1>{{proyecto}}</h1>
+
+{% for i in listado %}
+<table>
+    {{i}}
+</table>
+
+{% endfor %}
+
+
+{% endblock %}

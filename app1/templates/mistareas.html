@@ -1,13 +1,16 @@
 {% extends 'herencia.html' %}
 {% block dinamico %}
-<h1>
-    
+
+<p>{{pendientes.1}}</p>
+<table>
+
+
     {% for i in pendientes %}
-     {{i.asociado}} Tareas: {{i.titulo}}<br>
+     {{i.titulo}}<br>
 
     {% endfor %}
     <button>
-        Nueva tarea
+        <a href='/tareanueva/'> Nueva tarea </a>
     </button>
-</h1>
+</table>
 {% endblock %}

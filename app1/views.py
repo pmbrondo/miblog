@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Tareas,Proyectos
-from .forms import TareaNueva
+from .forms import TareaNueva,Proyectonuevo
 
 # Create your views here.
 
@@ -13,7 +13,9 @@ def prueba(requets):
 
 def mis_proyectos(requets):
     milista=Proyectos.objects.all()
-    return render (requets,"proyecto.html",{'milista':milista})
+    milista2=Proyectos.objects.values('id','nombre')
+    print(milista2)
+    return render (requets,"proyecto.html",{'milista2':milista2})
 
 def mis_tareas(requets):
     pendientes=Tareas.objects.all()
@@ -49,4 +51,19 @@ def agregar_tarea2(requets):
         Tareas.objects.create(titulo=titulo, descripcion=descripcion, asociado=proyecto)
     #return render(requets,'tareanueva.html',{'formulario':TareaNueva})
         return render(requets, 'tareanueva.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito'})
-        
+    
+
+def agregar_proyecto(requets):
+    if requets.method=='GET':
+        return render(requets,'nuevoproyecto.html',{'formulario':Proyectonuevo})
+    else:
+        nuevoproyecto = requets.POST['nombre']
+        fecha = requets.POST['fecha']
+        Proyectos.objects.create(nombre=nuevoproyecto,fechacreacion=fecha)
+        return render(requets,'nuevoproyecto.html',{'formulario':Proyectonuevo,'proyecto creado':'exito'})
+    
+
+def detalle_proyecto(requets,id):
+    p=Proyectos.objects.get(id=id)
+    a=tarea=Tareas.objects.filter(asociado=id)
+    return render (requets,'detalle.html',{'proyecto':p,'listado':a})

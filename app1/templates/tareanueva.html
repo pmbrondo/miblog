@@ -3,13 +3,12 @@
 
 <h1>Desde aca agrego nuevas tareas</h1>
 
-<form>
+<form method="POST">
+    {% csrf_token %}
     {{formulario.as_p}}
     <button>
         Guardar
     </button>
-
-
 </form>
 
 

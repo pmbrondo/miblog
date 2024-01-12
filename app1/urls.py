@@ -1,11 +1,11 @@
 
 from django.urls import path
-from .views import prueba,mis_proyectos,mis_tareas,mi_vista,agregar_tarea
+from .views import prueba,mis_proyectos,mis_tareas,mi_vista,agregar_tarea2
 
 urlpatterns = [
     path('',prueba),
     path('proyecto/',mis_proyectos),
     path('tareas/',mis_tareas),
     path('mi/',mi_vista),
-    path('tareanueva',agregar_tarea)
+    path('tareanueva/',agregar_tarea2)
 ]

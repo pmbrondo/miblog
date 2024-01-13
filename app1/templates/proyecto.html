@@ -10,11 +10,30 @@
 {% for i in milista2 %}
 
 <table>
-    <li><a href="{% url 'proyecto_tarea' i.id %}" >{{i.id}} {{i.nombre}} </a></li>
+    <li>
+        <a href="{% url 'proyecto_tarea' i.id %}" >{{i.id}} {{i.nombre}}</a><br>
+        <table>
+            <h6><a href="{% url 'editarproyecto' %}"> Editar Proyecto</a></h6>
+            <h6><a href="{% url 'editarproyecto' %}"> Eliminar Proyecto</a></h6>
+        </table>
+    </li>
 </table>
 
 {% endfor %}
 
 
+<h1>
+    <a href="{% url 'editarproyecto' %}"> Crear Proyecto</a>
+</h1>
+
+<h3>
+    <a href="{% url 'editarproyecto' %}"> Editar Proyecto</a>
+</h3>
+
+<h3>
+    <a href="{% url 'editarproyecto' %}"> Eliminar Proyecto</a>
+</h3>
+
+</table>
 
 {% endblock %}

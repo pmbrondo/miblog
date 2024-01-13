@@ -1,22 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Título</title>
+    <style>
+        body {
+            margin: 10px;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
 
-<nav>
-    <ul>
-        <li>
-            <a href="/">Principal</a>
-        </li>
-        <li>
-            <a href="/proyecto">Proyectos</a>
-        </li>
-        <li>
-            <a href="/tareas">Tareas definidas</a>
-        </li>
-        <li>
-            <a href="/mi">Acerca de mi</a>
-        </li>
-        
-    </ul>
-</nav>
+        nav li {
+            display: inline-block;
+            margin-right: 30px;
+            margin-top: 50px;
+        }
 
+        nav a {
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Principal</a>
+            </li>
+            <li>
+                <a href="/proyecto">Proyectos</a>
+            </li>
+            <li>
+                <a href="/tareas">Tareas definidas</a>
+            </li>
+            <li>
+                <a href="/mi">Acerca de mi</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Resto del contenido de la página -->
+
+</body>
+</html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Título</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: right; /* Alinea el texto a la derecha */
+        }
+
+        #login-btn, #logout-btn {
+            margin-right: 10px; /* Espaciado entre los botones y el borde derecho */
+            text-decoration: none;
+            padding: 5px 10px; /* Ajusta el relleno del botón según tus preferencias */
+            border: 1px solid #ccc; /* Añade un borde al botón para destacarlo */
+            border-radius: 5px; /* Agrega esquinas redondeadas al botón */
+            color: #333; /* Color del texto del botón */
+            background-color: #fff; /* Color de fondo del botón */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'login' %}" id="login-btn">Iniciar sesión</a>
+        <a href="{% url 'cerrarseccion' %}" id="logout-btn">Cerrar sesión</a>
+        <a href="{% url 'registro' %}" id="logout-btn" >Registrarme</a>
+    </header>
+
+    <!-- Resto del contenido de la página -->
+
+</body>
+</html>
 {% block dinamico %}
 {% endblock %}

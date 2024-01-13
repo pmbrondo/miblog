@@ -10,7 +10,9 @@ class Proyectonuevo(forms.Form):
     nombre=forms.CharField()
     fecha=forms.TimeField()
 
-
+class Editarproyecto(forms.Form):
+    nombrenuevo=forms.CharField()
+    fechanuevo=forms.TimeField()
 
 
 #Creacion y edicion de usuarios

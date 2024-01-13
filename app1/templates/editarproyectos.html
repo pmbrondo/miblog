@@ -1,0 +1,27 @@
+
+<h1>holaaa</h1>
+
+
+
+{% extends 'herencia.html' %}
+{% block dinamico %}
+
+
+
+<h1>Acceso para Admin</h1>
+<p>puede crear nuevos proyectos para tu grupo de desarrollo</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{formulario.as_p}}
+    
+    <button>
+        Guardar
+    </button>
+</form>
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,11 @@
+
+
+
+
+<h1>Editar proyecto</h1>
+
+<form method="POST" action="{% url 'editarproyecto2' id=proyecto.id %}">
+    {% csrf_token %}
+    {{ formulario.as_table }}
+    <input type="submit" value="Guardar cambios">
+</form>

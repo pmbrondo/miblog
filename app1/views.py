@@ -22,7 +22,7 @@ def prueba(requets):
 def mis_proyectos(requets):
     milista=Proyectos.objects.all()
     milista2=Proyectos.objects.values('id','nombre')
-    print(milista2)
+    #print(milista2)
     return render (requets,"proyecto.html",{'milista2':milista2})
 
 @login_required
@@ -53,11 +53,11 @@ def agregar_tarea2(requets):
         
     else:
         titulo = requets.POST['titulo']
-        print(titulo)
+        #print(titulo)
         descripcion = requets.POST['descripcion']
-        print(descripcion)
+        #print(descripcion)
         proyecto_id = requets.POST['asociado']
-        print(proyecto_id)
+        #print(proyecto_id)
         proyecto = get_object_or_404(Proyectos, nombre=proyecto_id)
     #Tareas.objects.create(titulo=requets.GET['titulo'],descripcion=requets.GET['descripcion'],asociado=requets.GET['asociado'])
         Tareas.objects.create(titulo=titulo, descripcion=descripcion, asociado=proyecto)
@@ -78,13 +78,81 @@ def agregar_proyecto(requets):
 
 # tengo que cambiar la logica porque es para registar no para editar
 def editar_proyecto(request):
-    if request.method=='GET':
-        return render(request,'editarproyectos.html',{'formulario':Editarproyecto})
+    #proyecto=Proyectos.objects.all()
+    proyecto=Proyectos.objects.values('id','nombre')
+    return render (request,'editarproyectos.html',{'proyecto':proyecto})
+
+#segunda vista de edicion
+
+
+def editar_proyecto2(request, id):
+    print("Entré en la vista")
+    proyecto = Proyectos.objects.get(id=id)
+
+    if request.method == 'POST':
+        print("Es un POST")
+        formulario = Proyectonuevo(request.POST)
+        if formulario.is_valid():
+            print("El formulario es válido")
+            datos = formulario.cleaned_data
+            proyecto.nombre = datos['nombre']
+            proyecto.fechacreacion = datos['fecha']
+            proyecto.save()
+            print("Guardé el proyecto")
+            return render(request, 'inicio.html')
+        else:
+            print("El formulario no es válido")
     else:
-        n = request.POST['nombrenuevo']
-        f = request.POST['fechanuevo']
-        Proyectos.objects.create(nombre=n,fechacreacion=f)
-        return render(request,'editarproyectos.html',{'formulario':Editarproyecto,'proyecto editado':'exito'})
+        print("No es un POST")
+        formulario = Proyectonuevo(initial={'nombre': proyecto.nombre, 'fecha': proyecto.fechacreacion})
+
+    print("Antes de renderizar")
+    return render(request, 'editarproyecto2.html', {'proyecto': proyecto, 'formulario': formulario})
+
+
+    # Resto del código si es un GET o si el formulario no es válido
+
+    #else:
+   #     formulario = Proyectonuevo(initial={'nombre': proyecto.nombre, 'fecha': proyecto.fechacreacion})
+    #return render(request, 'editarproyecto2.html',{'formulario': formulario, 'proyecto': proyecto})
+   
+
+#def editar_proyecto3(request):
+#   proyecto=Proyectos.objects.get()
+ #   print(proyecto)
+
+ #   if request.method == 'POST':
+  #      pass
+        #proyecto = get_object_or_404(Proyectos, nombre=a)
+        #formulario=request.POST
+        #print(formulario)
+        #a=formulario['nombre']
+        #b=formulario['fecha']
+        #print("llego")
+        #proyecto = get_object_or_404(Proyectos, nombre=a)
+        #print(proyecto)
+        #print("hola")
+        #proyecto.nombre=a
+        #proyecto.fechacreacion=b
+        #proyecto.save()
+        #print(c)
+        #formulario.save()
+    #formulario=Proyectonuevo (initial={"nombre":proyecto.nombre,"fecha":proyecto.fechacreacion})
+    #return render(request, 'editarproyecto3.html',{"formulario":formulario})  # Ajusta esto a tu nombre de vista de inicio
+
+    #else:
+    #   formulario = Proyectonuevo()
+
+    #return render(request, 'editarproyecto3.html', {'formulario': formulario})
+
+
+        
+
+
+
+
+
+
 
 #revisar proque necesito 2 argumentos y no consigo enviarlos
 def elimar_proyecto(request,nombre_borrar):
@@ -94,12 +162,25 @@ def elimar_proyecto(request,nombre_borrar):
 
     proyecto=Proyectos.objects.all()
     return render (request,'proyecto.html',{'proyecto':proyecto})
-    
+
+
+
+
+
+
+
+
 @login_required
 def detalle_proyecto(requets,id):
     p=Proyectos.objects.get(id=id)
     a=tarea=Tareas.objects.filter(asociado=id)
     return render (requets,'detalle.html',{'proyecto':p,'listado':a})
+
+
+
+
+
+
 
 #Usuarios, login y accesos.
 

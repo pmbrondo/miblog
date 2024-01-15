@@ -12,10 +12,6 @@
 <table>
     <li>
         <a href="{% url 'proyecto_tarea' i.id %}" >{{i.id}} {{i.nombre}}</a><br>
-        <table>
-            <h6><a href="{% url 'editarproyecto' %}"> Editar Proyecto</a></h6>
-            <h6><a href="{% url 'editarproyecto' %}"> Eliminar Proyecto</a></h6>
-        </table>
     </li>
 </table>
 
@@ -23,7 +19,7 @@
 
 
 <h1>
-    <a href="{% url 'editarproyecto' %}"> Crear Proyecto</a>
+    <a href="{% url 'nuevoproyecto' %}"> Crear Proyecto</a>
 </h1>
 
 <h3>

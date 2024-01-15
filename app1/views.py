@@ -110,63 +110,15 @@ def editar_proyecto2(request, id):
     return render(request, 'editarproyecto2.html', {'proyecto': proyecto, 'formulario': formulario})
 
 
-    # Resto del código si es un GET o si el formulario no es válido
-
-    #else:
-   #     formulario = Proyectonuevo(initial={'nombre': proyecto.nombre, 'fecha': proyecto.fechacreacion})
-    #return render(request, 'editarproyecto2.html',{'formulario': formulario, 'proyecto': proyecto})
-   
-
-#def editar_proyecto3(request):
-#   proyecto=Proyectos.objects.get()
- #   print(proyecto)
-
- #   if request.method == 'POST':
-  #      pass
-        #proyecto = get_object_or_404(Proyectos, nombre=a)
-        #formulario=request.POST
-        #print(formulario)
-        #a=formulario['nombre']
-        #b=formulario['fecha']
-        #print("llego")
-        #proyecto = get_object_or_404(Proyectos, nombre=a)
-        #print(proyecto)
-        #print("hola")
-        #proyecto.nombre=a
-        #proyecto.fechacreacion=b
-        #proyecto.save()
-        #print(c)
-        #formulario.save()
-    #formulario=Proyectonuevo (initial={"nombre":proyecto.nombre,"fecha":proyecto.fechacreacion})
-    #return render(request, 'editarproyecto3.html',{"formulario":formulario})  # Ajusta esto a tu nombre de vista de inicio
-
-    #else:
-    #   formulario = Proyectonuevo()
-
-    #return render(request, 'editarproyecto3.html', {'formulario': formulario})
-
-
-        
-
-
-
-
-
-
-
 #revisar proque necesito 2 argumentos y no consigo enviarlos
-def elimar_proyecto(request,nombre_borrar):
-    proyecto=Proyectos.objects.get(nombre=nombre_borrar)
+def elimar_proyecto(request,id):
+    proyecto=Proyectos.objects.get(id=id)
     print(proyecto)
     proyecto.delete()
+    proyectos=Proyectos.objects.all()
+    return render(request, 'elimarproyecto.html', {'proyectos': proyectos})
 
-    proyecto=Proyectos.objects.all()
-    return render (request,'proyecto.html',{'proyecto':proyecto})
-
-
-
-
-
+    #return render (request,'eliminarproyecto',{'proyecto':proyecto})
 
 
 

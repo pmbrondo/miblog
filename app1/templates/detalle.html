@@ -7,10 +7,14 @@
 
 {% for i in listado %}
 <table>
-    {{i}}
+    <li>{{i}}</li>
 </table>
 
-{% endfor %}
 
+{% endfor %}
+<p>Puedes agregar nuevas tareas:</p>
+<a href="/tareanueva/">Nueva Tarea</a>
+<p>Edita las tareas:</p>
+<a href="/cambiotareas.html/">Cambiar Tareas</a>
 
 {% endblock %}

@@ -1,16 +1,22 @@
 {% extends 'herencia.html' %}
 {% block dinamico %}
 
-<p>{{pendientes.1}}</p>
-<table>
+<h1>Tareas/Proyectos</h1>
 
-
-    {% for i in pendientes %}
-     {{i.titulo}}<br>
-
+{% for proyecto in pendientes2 %}
+  <h2>{{ proyecto.nombre }}</h2>
+  <ul>
+    {% for asociado in pendientes %}
+      {% if asociado.asociado_id == proyecto.id %}
+        {% for tarea in asociado.tareas %}
+          <li>
+            Título: {{ tarea.titulo }},
+            Descripción: {{ tarea.descripcion }}
+          </li>
+        {% endfor %}
+      {% endif %}
     {% endfor %}
-    <button>
-        <a href='/tareanueva/'> Nueva tarea </a>
-    </button>
-</table>
+  </ul>
+{% endfor %}
+
 {% endblock %}

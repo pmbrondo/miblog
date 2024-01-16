@@ -10,7 +10,7 @@
     <title>Crear usuario</title>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <table>
             {{formulario}}

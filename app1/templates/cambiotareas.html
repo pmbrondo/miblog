@@ -1,0 +1,20 @@
+{% extends 'herencia.html' %}
+{% block dinamico %}
+
+<h1>Editar Tareas!!!</h1>
+
+{% for proyecto in proyectos %}
+  <h2>{{ proyecto.nombre }}</h2>
+  {% for i in pendientes %}
+  {% if proyecto.id == i.asociado_id %}
+  <li>
+    {{i.titulo}} <a href="{% url 'editartarea' i.id %}"><h5>Editar</h5> </a> <a href="{% url 'eliminartarea' i.id %}"><h5>Eliminar</h5></a>
+  </li> 
+  {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'herencia.html' %}
+{% block dinamico %}
+
+
+<h1>Hello editar tarea</h1>
+
+<h1>Editar Tarea</h1>
+
+<form action="{% url 'editartarea' id=tarea.id %}" method="post">
+    {% csrf_token %}
+    {{ formulario.as_table }}
+    <input type="submit" value="Guardar cambios">
+</form>
+
+
+
+{% endblock %}

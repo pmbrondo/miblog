@@ -6,6 +6,10 @@ class TareaNueva(forms.Form):
     descripcion=forms.CharField(widget=forms.Textarea)
     asociado=forms.CharField(label='De que proyecto?',max_length=50)
 
+class Editartarea(forms.Form):
+    titulo=forms.CharField()
+    descripcion=forms.CharField()
+
 class Proyectonuevo(forms.Form):
     nombre=forms.CharField()
     fecha=forms.DateField()

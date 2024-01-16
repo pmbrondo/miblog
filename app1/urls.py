@@ -2,7 +2,8 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
 from .views import (prueba,mis_proyectos,mis_tareas,mi_vista,agregar_tarea2,agregar_proyecto,
-                    detalle_proyecto,vista_login,registro_usuario,editar_proyecto,elimar_proyecto,editar_proyecto2)
+                    detalle_proyecto,vista_login,registro_usuario,editar_proyecto,elimar_proyecto,editar_proyecto2,
+                    cambio_tareas,elimar_tarea,editar_tareas)
 
 
 urlpatterns = [
@@ -19,4 +20,7 @@ urlpatterns = [
     path('editarproyecto',editar_proyecto,name='editarproyecto'),
     path('editarproyecto2/<int:id>/', editar_proyecto2, name='editarproyecto2'),
     path('eliminarproyecto/<int:id>/', elimar_proyecto, name='eliminarproyecto'),
+    path('cambiotareas.html/',cambio_tareas,name='cambiartareas'),
+    path('eliminartarea/<int:id>/', elimar_tarea, name='eliminartarea'),
+    path('editartarea/<int:id>/', editar_tareas, name='editartarea'),
 ]

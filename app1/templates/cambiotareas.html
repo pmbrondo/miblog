@@ -7,9 +7,10 @@
   <h2>{{ proyecto.nombre }}</h2>
   {% for i in pendientes %}
   {% if proyecto.id == i.asociado_id %}
-  <li>
-    {{i.titulo}} <a href="{% url 'editartarea' i.id %}"><h5>Editar</h5> </a> <a href="{% url 'eliminartarea' i.id %}"><h5>Eliminar</h5></a>
-  </li> 
+  <table>
+    {{i.titulo}} <table><a href="{% url 'editartarea' i.id %}">Editar</a>
+     <a href="{% url 'eliminartarea' i.id %}">Eliminar</a></table>
+  </table> 
   {% endif %}
   {% endfor %}
 {% endfor %}

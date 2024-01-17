@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Tareas,Proyectos
-from .forms import TareaNueva,Proyectonuevo,Editarproyecto
+from .forms import TareaNueva,Proyectonuevo,Editarproyecto,Editartarea,Editarusuario,Crearusuario
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from itertools import groupby
+
 # Create your views here.
 
 
@@ -106,7 +107,7 @@ def cambio_tareas(request):
     pendientes2=Proyectos.objects.values()
     return render(request,'cambiotareas.html',{'pendientes':pendientes,'proyectos':pendientes2})
 
-from .forms import Editartarea
+
 
 def editar_tareas(request,id):
     print("Entré en la vista")
@@ -243,7 +244,7 @@ def vista_login(request):
                 print(f"Bienvenido, {username}")
                 #Pruebo enviar solo el nombre de usuario para evitar el for!
                 #pruebo enviar a herencia
-                return render(request, "herencia.html", {"mensaje":username})
+                return render(request, "inicio.html", {"mensaje":username})
             else:
                 print("Error, datos mal ingresados")
                 return render(request, "inicio.html", {"mensaje": "Error, datos mal ingresados"})
@@ -254,16 +255,59 @@ def vista_login(request):
     form = AuthenticationForm()
     return render(request, "login.html", {"formulario": form})
 
+#Crear usuarios
 
-def registro_usuario(requests):
+def registro_usuario(request):
 
-    if requests.method=='POST':
-        formulario=UserCreationForm(requests.POST)
+    if request.method=='POST':
+        formulario=Crearusuario(request.POST)
         if formulario.is_valid():
             usermane=formulario.cleaned_data['username']
+            print(usermane)
             formulario.save()
             print('usuario creado')
-            return render(requests,"inicio.html",{'mesaje':'usuario creado'})
+            #login (requests, formulario)
+            return render(request,"inicio.html",{'mesaje':'usuario creado'})
     else:
-        formulario=UserCreationForm()
-    return render(requests,"registro.html",{"formulario":formulario})
+        formulario=Crearusuario()
+    return render(request,"registro.html",{"formulario":formulario})
+
+
+
+
+
+#edito mi usuario
+
+
+def editar_usuario(request):
+   
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = Editarusuario(request.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+            usuario.usuario = informacion['usuario']
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
+
+            usuario.save()
+
+            return render(request, "inicio.html")
+
+    else:
+
+        miFormulario = Editarusuario()
+
+    return render(request, "editarusuario.html", {"miFormulario": miFormulario, "usuario": usuario})
+
+#Ver mi perfil
+
+def ver_perfil(request):
+    return render(request,'perfil.html')

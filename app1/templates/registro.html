@@ -1,8 +1,10 @@
 {% extends 'herencia.html' %}
 {% block dinamico %}
 
-<h2>Hola</h2>
-
+<h2>Bienvenido</h2>
+<br>
+<p>Aqui podras registrarte para hacer uso de la web!!</p>
+<br>
 <form method="POST">
     {% csrf_token %}
     {{formulario.as_p}}

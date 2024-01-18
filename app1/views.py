@@ -82,22 +82,23 @@ def agregar_tarea(requets):
     return render(requets, 'tareanueva.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito'})
 
 @login_required
-def agregar_tarea2(requets):
-    if requets.method=='GET':
-        return render(requets,'tareanueva.html',{'formulario':TareaNueva})
+def agregar_tarea2(request):
+    
+    if request.method=='GET':
+        return render(request,'tareanueva.html',{'formulario':TareaNueva})
         
     else:
-        titulo = requets.POST['titulo']
+        titulo = request.POST['titulo']
         #print(titulo)
-        descripcion = requets.POST['descripcion']
+        descripcion = request.POST['descripcion']
         #print(descripcion)
-        proyecto_id = requets.POST['asociado']
+        proyecto_id = request.POST['asociado']
         #print(proyecto_id)
         proyecto = get_object_or_404(Proyectos, nombre=proyecto_id)
     #Tareas.objects.create(titulo=requets.GET['titulo'],descripcion=requets.GET['descripcion'],asociado=requets.GET['asociado'])
         Tareas.objects.create(titulo=titulo, descripcion=descripcion, asociado=proyecto)
     #return render(requets,'tareanueva.html',{'formulario':TareaNueva})
-        return render(requets, 'tareanueva.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito'})
+        return render(request, 'tareanueva.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito','proyecto':proyecto})
     
 
 
@@ -310,8 +311,6 @@ def editar_usuario(request):
 
 def ver_perfil(request):
     usuario = request.user
-    print(usuario)
     usuarios = User.objects.values()
     lista_usuarios = [dict(usuario) for usuario in usuarios]
-    print(lista_usuarios)
     return render(request,'miperfil.html',{'usuarios': lista_usuarios, 'mi': usuario})

@@ -2,9 +2,10 @@
 {% block dinamico %}
 
 
-<h1>Hello editar tarea</h1>
 
 <h1>Editar Tarea</h1>
+
+<p>A conitnuacion podras generar una edicion de las tareas pendientes:</p>
 
 <form action="{% url 'editartarea' id=tarea.id %}" method="post">
     {% csrf_token %}

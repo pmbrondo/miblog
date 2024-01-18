@@ -37,6 +37,7 @@ def mis_proyectos(requets):
 @login_required
 def mis_tareas(requets):
     pendientes=Tareas.objects.values()
+    print(pendientes)
     pendientes2=Proyectos.objects.values()
     
     # Ordenar el QuerySet por 'asociado_id'
@@ -49,8 +50,9 @@ def mis_tareas(requets):
             tarea_dict = {
                 'id': item['id'],
                 'titulo': item['titulo'],
-                'descripcion': item['descripcion']
-            }
+                'descripcion': item['descripcion'],
+                'estado': item['estado']
+                }
             proyecto_id = item.get('proyecto_id')
             proyecto_info = next((p for p in pendientes2 if p['id'] == proyecto_id), None)
 
@@ -123,6 +125,7 @@ def editar_tareas(request,id):
             datos = formulario.cleaned_data
             tarea.titulo = datos['titulo']
             tarea.descripcion = datos['descripcion']
+            tarea.estado=datos['estado']
             tarea.save()
             print("Guardé el proyecto")
             return render(request, 'tareaeditada.html')
@@ -130,7 +133,7 @@ def editar_tareas(request,id):
             print("El formulario no es válido")
     else:
         print("No es un POST")
-        formulario = Editartarea(initial={'titulo': tarea.titulo, 'descripcion': tarea.descripcion})
+        formulario = Editartarea(initial={'titulo': tarea.titulo, 'descripcion': tarea.descripcion,'estado':tarea.estado})
 
     print("Antes de renderizar")
     return render(request, 'editartarea.html', {'tarea': tarea, 'formulario': formulario})

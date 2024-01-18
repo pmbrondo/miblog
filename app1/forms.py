@@ -11,6 +11,7 @@ class TareaNueva(forms.Form):
 class Editartarea(forms.Form):
     titulo=forms.CharField()
     descripcion=forms.CharField()
+    estado=forms.BooleanField()
 
 class Proyectonuevo(forms.Form):
     nombre=forms.CharField()

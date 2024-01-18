@@ -16,6 +16,7 @@ class Tareas(models.Model):
     titulo=models.CharField(max_length=100)
     descripcion=models.TextField()
     asociado=models.ForeignKey(Proyectos,on_delete=models.CASCADE)
+    estado= models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.titulo

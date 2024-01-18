@@ -50,11 +50,6 @@
             <li>
                 <a href="/mi">Acerca de mi</a>
             </li>
-            {% if request.user.is_authenticated %}
-            <li>
-                <a href="/perfil">Ver Perfil</a>
-            </li>
-            {% endif %}
         </ul>
     </nav>
     
@@ -99,6 +94,7 @@
     <header>
         {% if request.user.is_authenticated %}
         <a href="{% url 'editarusuario' %}" id="logout-btn">Editar Perfil</a>
+        <a href="{% url 'miperfil' %}" id="logout-btn">Mi Perfil</a>
         <a href="{% url 'cerrarseccion' %}" id="logout-btn">Cerrar sesión</a>
         {% else %}
         <a href="{% url 'login' %}" id="login-btn">Iniciar sesión</a>

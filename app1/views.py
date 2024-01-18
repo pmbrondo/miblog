@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from itertools import groupby
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -274,8 +275,6 @@ def registro_usuario(request):
 
 
 
-
-
 #edito mi usuario
 
 
@@ -310,4 +309,9 @@ def editar_usuario(request):
 #Ver mi perfil
 
 def ver_perfil(request):
-    return render(request,'perfil.html')
+    usuario = request.user
+    print(usuario)
+    usuarios = User.objects.values()
+    lista_usuarios = [dict(usuario) for usuario in usuarios]
+    print(lista_usuarios)
+    return render(request,'miperfil.html',{'usuarios': lista_usuarios, 'mi': usuario})

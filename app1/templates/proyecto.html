@@ -1,7 +1,11 @@
 {% extends 'herencia.html' %}
 {% block dinamico %}
 
-<h1>Pendientes de mi equipo!!</h1>
+<h1>Mis Proyectos!!</h1>
+<p>Bienvenido, desde aqui podra generar cambios a proyectos y sus tareas asocidas.
+    A countinuacion tendra un listados de los proyectos solicitados, dentro de cada uno las tareas a cumplir. 
+    En caso de ser necesario, podra generar la edicion de ambos, ante cualquier consulta favor de contactar al administrador.
+</p>
 
 
 
@@ -18,9 +22,9 @@
 {% endfor %}
 
 
-<h1>
+<h2>
     <a href="{% url 'nuevoproyecto' %}"> Crear Proyecto</a>
-</h1>
+</h2>
 
 <h3>
     <a href="{% url 'editarproyecto' %}"> Editar Proyecto</a>

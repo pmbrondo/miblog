@@ -104,8 +104,7 @@ def agregar_tarea2(request):
     
 
 
-# Editar tareas
-    
+#Editar tareas  
 def cambio_tareas(request):
     pendientes=Tareas.objects.values()
     pendientes2=Proyectos.objects.values()
@@ -137,9 +136,6 @@ def editar_tareas(request,id):
 
     print("Antes de renderizar")
     return render(request, 'editartarea.html', {'tarea': tarea, 'formulario': formulario})
-
-
-
 
 #Eliminar tareas
 

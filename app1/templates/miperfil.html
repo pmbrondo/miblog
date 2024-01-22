@@ -16,9 +16,15 @@
             <li><strong>Nombre:</strong> {{ usuario_dict.first_name }}</li>
             <li><strong>Fecha de Alta:</strong> {{ usuario_dict.date_joined }}</li>
         </ul>
+        {% if usuario_dict.is_superuser == True %}
+        <br>
+        <button>
+            <a href="/admin">Administrador</a>
+        </button>
+        <p>Usuario administrados/Aceso a configuracion </p>
+        {% endif %}
     {% endif %}
 {% endfor %}
-
 
 
 {% endblock %}

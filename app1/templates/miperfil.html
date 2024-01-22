@@ -1,12 +1,12 @@
+
 {% extends 'herencia.html' %}
 {% block dinamico %}
-
 
 
 <h1>Mi Perfil</h1>
 
 {% for usuario_dict in usuarios %}
-    {% if usuario_dict.username == mi.username %}
+    {% if usuario_dict.username == usuario.username %}
         <p>Datos del usuario:</p>
         <ul>
             <li><strong>Nombre de usuario:</strong> {{ usuario_dict.username }}</li>
@@ -26,5 +26,15 @@
     {% endif %}
 {% endfor %}
 
+{% if avatar and avatar.imagen %}
+<img height="100px" src="{{ avatar.imagen.url }}">
+{% endif %}
+<br>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Actualizar Avatar</button>
+</form>
+<br>
 
 {% endblock %}

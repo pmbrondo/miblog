@@ -8,7 +8,9 @@
   {% for i in pendientes %}
   {% if proyecto.id == i.asociado_id %}
   <table>
-    {{i.titulo}} <table><a href="{% url 'editartarea' i.id %}">Editar</a>
+    {{i.titulo}} 
+    <table>
+      <a href="{% url 'editartarea' i.id %}">Editar</a><br>
      <a href="{% url 'eliminartarea' i.id %}">Eliminar</a></table>
   </table> 
   {% endif %}

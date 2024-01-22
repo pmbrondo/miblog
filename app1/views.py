@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Tareas,Proyectos
-from .forms import TareaNueva,Proyectonuevo,Editarproyecto,Editartarea,Editarusuario,Crearusuario
+from .models import Tareas,Proyectos,Avatar
+from .forms import TareaNueva,Proyectonuevo,Editarproyecto,Editartarea,Editarusuario,Crearusuario,FormularioAvatar
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
@@ -14,11 +14,27 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
+#prueba avatar
+def misavatares(request):
+    if request.user.is_authenticated:
+        a = request.user
+        miavatar = Avatar.objects.filter(user=request.user).first()
+      
+        return render(request,"herencia.html",{'avatar': miavatar,'usuario':a})
+    else:
+        return render(request, "herencia.html")
+
 
 
 #general
 def prueba(requets):
-    return render(requets,"inicio.html")
+    if requets.user.is_authenticated:
+        miavatar = Avatar.objects.filter(user=requets.user).first()
+        #'avatar': miavatar,
+        a=requets.user
+        return render(requets,"inicio.html",{'avatar': miavatar,'usuario':a})
+    else:
+        return render(requets,"inicio.html")
 
 #mis datos 
 def mi_vista(requets):
@@ -37,7 +53,7 @@ def mis_proyectos(requets):
 @login_required
 def mis_tareas(requets):
     pendientes=Tareas.objects.values()
-    print(pendientes)
+    
     pendientes2=Proyectos.objects.values()
     
     # Ordenar el QuerySet por 'asociado_id'
@@ -111,11 +127,11 @@ def cambio_tareas(request):
     return render(request,'cambiotareas.html',{'pendientes':pendientes,'proyectos':pendientes2})
 
 
-
+@login_required
 def editar_tareas(request,id):
     print("Entré en la vista")
     tarea = Tareas.objects.get(id=id)
-    print(tarea)
+    
     if request.method == 'POST':
         print("Es un POST")
         formulario = Editartarea(request.POST)
@@ -138,7 +154,7 @@ def editar_tareas(request,id):
     return render(request, 'editartarea.html', {'tarea': tarea, 'formulario': formulario})
 
 #Eliminar tareas
-
+@login_required
 def elimar_tarea(request,id):
     tarea=Tareas.objects.get(id=id)
     print(tarea)
@@ -242,10 +258,15 @@ def vista_login(request):
 
             if user is not None:
                 login(request, user)
-                print(f"Bienvenido, {username}")
+                #print(f"Bienvenido, {username}")
                 #Pruebo enviar solo el nombre de usuario para evitar el for!
                 #pruebo enviar a herencia
-                return render(request, "inicio.html", {"mensaje":username})
+                #, {"mensaje":username}
+                miavatar = Avatar.objects.filter(user=request.user).first()
+                a=request.user
+                print(a)
+                return render(request, "inicio.html",{'avatar': miavatar,'usuario':a})
+    
             else:
                 print("Error, datos mal ingresados")
                 return render(request, "inicio.html", {"mensaje": "Error, datos mal ingresados"})
@@ -277,7 +298,7 @@ def registro_usuario(request):
 
 #edito mi usuario
 
-
+@login_required
 def editar_usuario(request):
    
     usuario = request.user
@@ -308,8 +329,24 @@ def editar_usuario(request):
 
 #Ver mi perfil
 
+    
+@login_required
 def ver_perfil(request):
     usuario = request.user
+    print(usuario)
     usuarios = User.objects.values()
+    print(usuarios)
     lista_usuarios = [dict(usuario) for usuario in usuarios]
-    return render(request,'miperfil.html',{'usuarios': lista_usuarios, 'mi': usuario})
+    miavatar = Avatar.objects.filter(user=request.user).first()
+
+    if request.method == 'POST':
+        form = FormularioAvatar(request.POST, request.FILES, instance=miavatar)
+        if form.is_valid():
+            miavatar = form.save(commit=False) 
+            miavatar.user = request.user  
+            miavatar.save()  
+            return redirect('miperfil')
+    else:
+        form = FormularioAvatar(instance=miavatar)
+
+    return render(request, 'miperfil.html', {'usuarios': lista_usuarios, 'usuario': usuario, 'avatar': miavatar, 'form': form})

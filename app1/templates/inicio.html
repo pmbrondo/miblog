@@ -21,12 +21,15 @@
    <!-- prueba -->
  
 
-<body>
+   <body>
     <h1>
         Bienvenido
     </h1>
-    
-    <h2>{{mensaje}}</h2>
+    {% if request.user.is_authenticated %}
+    <h2>{{ usuario }}</h2>
+    {% if avatar and avatar.imagen %} <img height="60px" src="{{ avatar.imagen.url }}"> {% endif %}
+    {% endif %}
+    </body>
 
     <p>Web para equipo de desarrollo junior</p>
 

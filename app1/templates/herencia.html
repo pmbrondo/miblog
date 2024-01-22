@@ -93,12 +93,24 @@
 <body>
     <header>
         {% if request.user.is_authenticated %}
+        <div id="user-info">
+            <span>
+                {{usuario}}
+                <br>
+                {% if avatar and avatar.imagen %} <img height="60px" src="{{ avatar.imagen.url }}"> {% endif %}
+            </span>
+        </div>
+        <br>
+        <div id="user-actions">
         <a href="{% url 'editarusuario' %}" id="logout-btn">Editar Perfil</a>
         <a href="{% url 'miperfil' %}" id="logout-btn">Mi Perfil</a>
         <a href="{% url 'cerrarseccion' %}" id="logout-btn">Cerrar sesión</a>
+
+
+
         {% else %}
         <a href="{% url 'login' %}" id="login-btn">Iniciar sesión</a>
-        <a href="{% url 'registro' %}" id="logout-btn" >Registrarme</a>
+        <a href="{% url 'registro' %}" id="logout-btn" >Registrarme</a></div>
         {% endif %}
     </header>
 

@@ -1,5 +1,6 @@
 
 from django import forms
+from .models import Avatar
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -37,6 +38,11 @@ class Crearusuario(UserCreationForm):
         # Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
+
+class FormularioAvatar(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['imagen']
 
 
 class Editarusuario(UserCreationForm):

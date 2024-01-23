@@ -100,17 +100,18 @@ def agregar_tarea(requets):
     return render(requets, 'tareanueva.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito'})
 
 @login_required
-def agregar_tarea2(request):
+def agregar_tarea2(request,id):
     
+    tarea = get_object_or_404(Proyectos, id=id)
+    print(tarea)
     if request.method=='GET':
-        print('Hello world')
-        tarea = Tareas.objects.values()
-        print(tarea)
+        print('Hello world2')
         #formulario = Editartarea(initial={'titulo': tarea.titulo, 'descripcion': tarea.descripcion,'estado':tarea.estado})
-        #formulario=TareaNueva(initial={})
-        return render(request,'tareanueva.html',{'formulario':TareaNueva})
+        formulario = TareaNueva(initial={'asociado': tarea})
+        return render(request,'tareanueva.html',{'formulario':formulario})
         
     else:
+        print('Hello world3')
         titulo = request.POST['titulo']
         #print(titulo)
         descripcion = request.POST['descripcion']
@@ -126,11 +127,16 @@ def agregar_tarea2(request):
 
 
 #Editar tareas  
-def cambio_tareas(request):
-    pendientes=Tareas.objects.values()
-    pendientes2=Proyectos.objects.values()
-    return render(request,'cambiotareas.html',{'pendientes':pendientes,'proyectos':pendientes2})
+def cambio_tareas(request,id):
+    print('Hola')
+    proyecto = get_object_or_404(Proyectos, id=id)
+    tareas_asociadas = Tareas.objects.filter(asociado=proyecto)
+    context = {
+        'proyecto': proyecto,
+        'tareas_asociadas': tareas_asociadas,
+    }
 
+    return render(request, 'cambiotareas.html', context)
 
 @login_required
 def editar_tareas(request,id):
@@ -237,9 +243,7 @@ def elimar_proyecto(request,id):
 @login_required
 def detalle_proyecto(requets,id):
     p=Proyectos.objects.get(id=id)
-    print(p)
     a=tarea=Tareas.objects.filter(asociado=id)
-    print(a)
     return render (requets,'detalle.html',{'proyecto':p,'listado':a})
 
 

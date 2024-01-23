@@ -3,22 +3,26 @@
 {% block dinamico %}
 
 
+
+
+
 <h1>Editar Tareas!!!</h1>
 
-{% for proyecto in proyectos %}
-  <h1>{{ proyecto.nombre }}</h1>
-  {% for i in pendientes %}
-  {% if proyecto.id == i.asociado_id %}
-  <table>
-    <h3>{{i.titulo}} </h3>
-    <table>
-      <a href="{% url 'editartarea' i.id %}">Editar</a><br>
-     <a href="{% url 'eliminartarea' i.id %}">Eliminar</a></table>
-  </table> 
-  {% endif %}
-  {% endfor %}
-{% endfor %}
 
+<h2>{{proyecto}}</h2>
+
+<table>
+  {% for tarea in tareas_asociadas %}
+    <tr>
+      <li>
+        {{ tarea.titulo }} , {{ tarea.descripcion }}
+        <a href="{% url 'editartarea' tarea.id %}">Editar</a><br>
+        <a href="{% url 'eliminartarea' tarea.id %}">Eliminar</a></table>
+      </li>
+      <!-- Agrega más campos según sea necesario -->
+    </tr>
+  {% endfor %}
+</table>
 
 <style>
   body {

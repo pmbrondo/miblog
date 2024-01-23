@@ -1,4 +1,5 @@
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
 
 <html lang="en">
@@ -9,9 +10,25 @@
     <title>Document</title>
 </head>
 <body>
-    
     <h1>Te has deslogueado...</h1>
+    
  
 </body>
 </html>
+
+<style>
+    body {
+      background-image: url("{% static 'logo9.jpg' %}");
+      /* Ajusta otras propiedades según tus necesidades */  
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    </style> 
+
+
+<img src="{% static 'logo2.jpg' %}" alt="">
+<br>
+<br>
+
 {% endblock %}

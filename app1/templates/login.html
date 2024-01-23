@@ -1,5 +1,5 @@
-
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
 
 <html lang="en">
@@ -9,6 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear usuario</title>
 </head>
+
+<h1>Iniciar sesion!!</h1>
+
+
+
 <body>
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
@@ -19,5 +24,7 @@
         <button type="submit">Inciar sesion</button>
     </form>
 </body>
-</html>
+</html><br>
+<img src="{% static 'logo4.png' %}" alt="">
+
 {% endblock %}

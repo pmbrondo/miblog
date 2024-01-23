@@ -1,7 +1,16 @@
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
 
-
+<style>
+  body {
+    background-image: url("{% static 'logo10.jpg' %}");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
 
 <h1>Tareas/Proyectos</h1>
 

@@ -1,4 +1,5 @@
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
 
 <!DOCTYPE html>
@@ -19,13 +20,18 @@
 
      <section id="inicio">
         <h2>Bienvenido a Mi Sitio Web</h2>
-        <p>Diseño para equipo de desarrollo</p>
+        <p>Diseño para equipo de desarrollo junior: </p>
+        <p>Se espera poder organizar a un equipo desarrollo para generar sus teras diarias.</p>
     </section>
+
+    <table><img src="{% static 'logo.jpg' %}" alt=""></table>
 
     <section id="acerca">
         <h2>Acerca de Nosotros</h2>
-        <p>Nos encargamos del desarrollo de software para mejorar y simplificar la experiencia del usuario</p>
+        <p>Desarrollamos de software para mejorar y simplificar la experiencia del usuario</p>
     </section>
+    <table><img src="{% static 'logo2.jpg' %}" alt=""></table>
+    
 
     <section id="contacto">
         <h2>Contacto</h2>
@@ -36,6 +42,8 @@
             Teléfono: +543513143555
         </address>
     </section>
+    <br>
+    <table><img src="{% static 'logo3.png' %}" alt=""></table>
 
     <footer>
         <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>

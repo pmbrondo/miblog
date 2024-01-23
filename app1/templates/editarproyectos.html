@@ -1,29 +1,46 @@
 
-<h1>Editar Proyectos</h1>
-
-
-
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
 
 
 
-<h1>Acceso para Admin</h1>
-<p>!!!</p>
+
+
+
+
+
+<h1>Editar Proyectos</h1>
+
+<p>Desde aca se podran generar cambios a los proyectos actuales!</p>
 
 {% for i in proyecto %}
 
 <table>
     {{i.id}} {{i.nombre}}<br>
-    <a href="{% url 'editarproyecto2' i.id %}"> Editar</a>
-    <a href="{% url 'eliminarproyecto' i.id %}"> Eliminar</a>
+    <table>
+        <a href="{% url 'editarproyecto2' i.id %}"> Editar</a> <br>
+        <a href="{% url 'eliminarproyecto' i.id %}"> Eliminar</a>
+    </table>
+    
 </table>
 
 {% endfor %}
 
 </form>
 
-
+<style>
+    body {
+      background-image: url("{% static 'logo9.jpg' %}");
+      /* Ajusta otras propiedades según tus necesidades */
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+</style>
+<br>
+<br>
+<br>
 
 {% endblock %}
 

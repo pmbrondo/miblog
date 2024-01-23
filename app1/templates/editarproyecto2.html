@@ -1,5 +1,7 @@
 
-
+{% extends 'herencia.html' %}
+{% load static %}
+{% block dinamico %}
 
 
 <h1>Editar proyecto</h1>
@@ -9,3 +11,16 @@
     {{ formulario.as_table }}
     <input type="submit" value="Guardar cambios">
 </form>
+<style>
+    body {
+      background-image: url("{% static 'logo9.jpg' %}");
+      /* Ajusta otras propiedades según tus necesidades */
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+</style>
+<br>
+<br>
+<br>
+{% endblock %}

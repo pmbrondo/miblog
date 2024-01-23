@@ -1,14 +1,16 @@
 {% extends 'herencia.html' %}
+{% load static %}
 {% block dinamico %}
+
 
 <h1>Editar Tareas!!!</h1>
 
 {% for proyecto in proyectos %}
-  <h2>{{ proyecto.nombre }}</h2>
+  <h1>{{ proyecto.nombre }}</h1>
   {% for i in pendientes %}
   {% if proyecto.id == i.asociado_id %}
   <table>
-    {{i.titulo}} 
+    <h3>{{i.titulo}} </h3>
     <table>
       <a href="{% url 'editartarea' i.id %}">Editar</a><br>
      <a href="{% url 'eliminartarea' i.id %}">Eliminar</a></table>
@@ -18,6 +20,17 @@
 {% endfor %}
 
 
-
+<style>
+  body {
+    background-image: url("{% static 'logo9.jpg' %}");
+    /* Ajusta otras propiedades según tus necesidades */
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+<br>
+<br>
+<br>
 
 {% endblock %}

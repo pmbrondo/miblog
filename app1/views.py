@@ -103,6 +103,11 @@ def agregar_tarea(requets):
 def agregar_tarea2(request):
     
     if request.method=='GET':
+        print('Hello world')
+        tarea = Tareas.objects.values()
+        print(tarea)
+        #formulario = Editartarea(initial={'titulo': tarea.titulo, 'descripcion': tarea.descripcion,'estado':tarea.estado})
+        #formulario=TareaNueva(initial={})
         return render(request,'tareanueva.html',{'formulario':TareaNueva})
         
     else:

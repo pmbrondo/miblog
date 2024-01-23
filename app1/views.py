@@ -85,7 +85,8 @@ def mis_tareas(requets):
     return render(requets,'mistareas.html',{'pendientes':mati,'pendientes2':pendientes2})
 
 
-
+def cambio_generado(requets):
+    return render(requets,'cambioprocesado.html')
 
 
 @login_required
@@ -122,7 +123,8 @@ def agregar_tarea2(request,id):
     #Tareas.objects.create(titulo=requets.GET['titulo'],descripcion=requets.GET['descripcion'],asociado=requets.GET['asociado'])
         Tareas.objects.create(titulo=titulo, descripcion=descripcion, asociado=proyecto)
     #return render(requets,'tareanueva.html',{'formulario':TareaNueva})
-        return render(request, 'tareanueva.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito','proyecto':proyecto})
+        return render(request, 'cambioprocesado.html', {'formulario': TareaNueva, 'exito': 'Tarea creada con éxito','proyecto':proyecto})
+        
     
 
 
@@ -188,7 +190,7 @@ def agregar_proyecto(requets):
         nuevoproyecto = requets.POST['nombre']
         fecha = requets.POST['fecha']
         Proyectos.objects.create(nombre=nuevoproyecto,fechacreacion=fecha)
-        return render(requets,'nuevoproyecto.html',{'formulario':Proyectonuevo,'proyecto creado':'exito'})
+        return render(requets,'cambioprocesado.html',{'formulario':Proyectonuevo,'proyecto creado':'exito'})
 
 
 

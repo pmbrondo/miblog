@@ -17,9 +17,11 @@
 
 {% endfor %}
 <p>Puedes agregar nuevas tareas:</p>
-<a href="{% url 'tareanueva' proyecto.id %}"> Editar</a> <br>
+<a href="{% url 'tareanueva' proyecto.id %}"> Agregar Tarea</a> <br>
 <p>Edita las tareas:</p>
 <a href="{% url 'cambiotareas' proyecto.id %}">Cambiar Tareas</a>
+
+<p>Desde esta acceso podras elimar o cambiar las tareas ya asignadas a este proyecto</p>
 <br>
 
 <style>

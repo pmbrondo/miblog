@@ -2,6 +2,11 @@
 Proyecto en Django
 
 
+Acceso para admin 
+
+user: admin
+clave: 1234
+
 
 Nombre
 Web para desarrollo de proyectos
